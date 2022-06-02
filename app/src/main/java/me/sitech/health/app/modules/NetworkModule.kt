@@ -1,61 +1,43 @@
 package me.sitech.health.app.modules
 
-import android.content.Context
-import com.google.gson.GsonBuilder
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import me.sitech.health.app.app.HealthApp
-import me.sitech.health.data.endpoints.EndPoints
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.BuildConfig
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
+import java.util.concurrent.TimeUnit
 
-@Module
-@InstallIn(SingletonComponent::class)
-class NetworkModule {
 
-    @Singleton
-    @Provides
-    fun provideApplication(@ApplicationContext app: Context): HealthApp {
-        return app as HealthApp
-    }
+val networkModule = module {
+    val connectTimeout : Long = 40// 20s
+    val readTimeout : Long  = 40 // 20s
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(client: OkHttpClient): Retrofit {
-
-        return Retrofit.Builder().baseUrl("https://reqres.in/").client(client)
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
-
-        val okHttpClientBuilder = OkHttpClient().newBuilder()
-
-        val logger = HttpLoggingInterceptor()
-        logger.level = HttpLoggingInterceptor.Level.BODY
-        okHttpClientBuilder.addInterceptor(logger)
-
+    fun provideHttpClient(): OkHttpClient {
+        val okHttpClientBuilder = OkHttpClient.Builder()
+            .connectTimeout(connectTimeout, TimeUnit.SECONDS)
+            .readTimeout(readTimeout, TimeUnit.SECONDS)
+        if (BuildConfig.DEBUG) {
+            val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
+            okHttpClientBuilder.addInterceptor(httpLoggingInterceptor)
+        }
+        okHttpClientBuilder.build()
         return okHttpClientBuilder.build()
     }
 
-    @Provides
-    @Singleton
-    fun provideContext(application: HealthApp): Context {
-        return application.applicationContext
+    fun provideRetrofit(client: OkHttpClient, baseUrl: String): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
     }
 
-    @Provides
-    @Singleton
-    fun provideApi(retrofit: Retrofit): EndPoints {
-        return retrofit.create(EndPoints::class.java)
+    single { provideHttpClient() }
+    single {
+        val baseUrl = "https://reqres.in/"
+        provideRetrofit(get(), baseUrl)
     }
 }

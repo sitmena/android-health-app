@@ -1,5 +1,6 @@
 package me.sitech.health.data.repository
 
+import android.content.Context
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
@@ -8,9 +9,8 @@ import me.sitech.health.app.utils.resolveError
 import me.sitech.health.data.endpoints.EndPoints
 import me.sitech.health.domain.repository.MainRepository
 import okhttp3.ResponseBody
-import javax.inject.Inject
 
-class MainRepositoryImpl @Inject constructor(private val endPoints: EndPoints): MainRepository {
+class MainRepositoryImpl constructor(private val endPoints: EndPoints): MainRepository {
 
     override suspend fun redeem(): Flow<RequestState<ResponseBody>> = flow {
         try {
@@ -21,6 +21,6 @@ class MainRepositoryImpl @Inject constructor(private val endPoints: EndPoints): 
             emit(e.resolveError())
         }
     }.onStart {
-
+        emit(RequestState.Loading)
     }
 }

@@ -1,18 +1,16 @@
 package me.sitech.health.app.modules
 
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import me.sitech.health.data.endpoints.EndPoints
 import me.sitech.health.data.repository.MainRepositoryImpl
 import me.sitech.health.domain.repository.MainRepository
+import org.koin.android.ext.koin.androidContext
+import android.content.Context
+import org.koin.dsl.module
 
-@Module(includes = [NetworkModule::class])
-@InstallIn(SingletonComponent::class)
-class RepositoryModule {
+val repositoryModule = module {
+    single { provideMainRepository(get()) }
+}
 
-    @Provides
-    fun provideMainRepository(endPoints: EndPoints): MainRepository =
-        MainRepositoryImpl(endPoints)
+fun provideMainRepository(endPoints: EndPoints): MainRepository {
+    return MainRepositoryImpl(endPoints)
 }
