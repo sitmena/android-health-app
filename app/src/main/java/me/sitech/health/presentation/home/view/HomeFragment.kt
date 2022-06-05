@@ -38,6 +38,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
                     Toast.makeText(requireActivity(),it.exception.message, Toast.LENGTH_SHORT).show()
                 }
                 is RequestState.Loading -> {
+
                 }
                 is RequestState.Success -> {
                     binding.tvText.text = it.data.string()

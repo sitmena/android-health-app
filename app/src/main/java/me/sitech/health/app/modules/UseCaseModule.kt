@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 val useCaseModule = module {
 
-    single {RedeemUseCase(get())}
+    single { RedeemUseCase(get()) }
 }

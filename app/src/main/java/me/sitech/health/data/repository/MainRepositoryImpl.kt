@@ -1,6 +1,5 @@
 package me.sitech.health.data.repository
 
-import android.content.Context
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
@@ -15,12 +14,14 @@ class MainRepositoryImpl constructor(private val endPoints: EndPoints): MainRepo
     override suspend fun redeem(): Flow<RequestState<ResponseBody>> = flow {
         try {
             val response = endPoints.redeem()
+            emit(RequestState.Loading(false))
             emit(RequestState.Success(response))
         } catch (e: Exception) {
             e.printStackTrace()
+            emit(RequestState.Loading(false))
             emit(e.resolveError())
         }
     }.onStart {
-        emit(RequestState.Loading)
+        emit(RequestState.Loading(true))
     }
 }

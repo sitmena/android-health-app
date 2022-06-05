@@ -12,7 +12,7 @@ import okhttp3.ResponseBody
 class HomeViewModel constructor(private val useCase: RedeemUseCase) : ViewModel() {
 
     private val mRedeemDataResult =
-        MutableStateFlow<RequestState<ResponseBody>>(RequestState.Loading)
+        MutableStateFlow<RequestState<ResponseBody>>(RequestState.Loading(true))
     val mRedeemStateFlow: StateFlow<RequestState<ResponseBody>> get() = mRedeemDataResult
 
     fun redeem() {
