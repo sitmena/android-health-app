@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="me.sitech.health">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".app.app.HealthApp"
         android:allowBackup="true"
