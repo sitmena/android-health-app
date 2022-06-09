@@ -43,7 +43,7 @@ class MainRepositoryImpl(private val endPoints: EndPoints, private val db: StepD
 
     override suspend fun insertStepsRecord(stepEntity: StepEntity): Flow<RequestState<Unit>> = flow {
         try {
-            db.insertAll(stepEntity)
+            db.insert(stepEntity)
             emit(RequestState.Loading(false))
             emit(RequestState.Success(Unit))
         } catch (e: Exception) {

@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 @Entity
 class StepEntity(
     @PrimaryKey(autoGenerate = true) val uid: Int,
-    @ColumnInfo(name = "datetime") val dateTime: Long?,
+    @ColumnInfo(name = "datetime") val dateTime: Long,
     @ColumnInfo(name = "step_count") val stepCount: Int = 0
 )

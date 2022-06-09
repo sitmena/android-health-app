@@ -13,7 +13,7 @@ interface StepDao {
     suspend fun getAll(): List<StepEntity>
 
     @Insert
-    suspend fun insertAll(stepEntity: StepEntity)
+    suspend fun insert(stepEntity: StepEntity)
 
     @Delete
     suspend fun delete(stepEntity: StepEntity)

@@ -7,9 +7,9 @@ import me.sitech.health.data.room.StepDao
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single { provideMainRepository(get(),get()) }
+    single { provideMainRepository(get(), get()) }
 }
 
-fun provideMainRepository(endPoints: EndPoints,dao: StepDao): MainRepository {
-    return MainRepositoryImpl(endPoints,dao)
+fun provideMainRepository(endPoints: EndPoints, dao: StepDao): MainRepository {
+    return MainRepositoryImpl(endPoints, dao)
 }

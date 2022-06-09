@@ -32,8 +32,6 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         observeStateFlow()
 
         viewModel.getStepRecordsList()
-
-
     }
 
     private fun observeStateFlow() {
@@ -67,7 +65,6 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
                 }
                 is RequestState.Success -> {
                     binding.tvText.text = Gson().toJson(it.data)
-
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
