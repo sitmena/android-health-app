@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="me.sitech.health">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:name=".app.app.HealthApp"
@@ -16,6 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SitechHealth"
         tools:targetApi="31">
+        <service
+            android:name=".app.services.StepCountingService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name=".presentation.activity.MainActivity"
             android:exported="true">

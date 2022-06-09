@@ -1,5 +1,6 @@
 package me.sitech.health.presentation.home.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -12,6 +13,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import me.sitech.health.R
+import me.sitech.health.app.services.StepCountingService
 import me.sitech.health.app.utils.RequestState
 import me.sitech.health.app.utils.viewBinding
 import me.sitech.health.databinding.FragmentHomeBinding
