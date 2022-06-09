@@ -31,10 +31,6 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
         observeStateFlow()
 
-//        for (i in 1..15){
-//            viewModel.insertStepRecord(Calendar.getInstance().timeInMillis,(1..100).random())
-//        }
-
         viewModel.getStepRecordsList()
 
 
@@ -53,7 +49,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
                 }
                 is RequestState.Success -> {
-//                    binding.tvText.text = it.data.string()
+
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
@@ -72,10 +68,6 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
                 is RequestState.Success -> {
                     binding.tvText.text = Gson().toJson(it.data)
 
-                    it.data.forEach { entity ->
-                        viewModel.deleteStepRecord(entity)
-
-                    }
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
