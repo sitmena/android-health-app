@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.google.gson.Gson
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import me.sitech.health.R
@@ -15,6 +17,7 @@ import me.sitech.health.app.utils.viewBinding
 import me.sitech.health.databinding.FragmentHomeBinding
 import me.sitech.health.presentation.home.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class HomeFragment: Fragment(R.layout.fragment_home) {
 
@@ -25,7 +28,16 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.redeem()
+
         observeStateFlow()
+
+//        for (i in 1..15){
+//            viewModel.insertStepRecord(Calendar.getInstance().timeInMillis,(1..100).random())
+//        }
+
+        viewModel.getStepRecordsList()
+
+
     }
 
     private fun observeStateFlow() {
@@ -41,7 +53,29 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
                 }
                 is RequestState.Success -> {
-                    binding.tvText.text = it.data.string()
+//                    binding.tvText.text = it.data.string()
+                }
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        viewModel.mStepRecordsListStateFlow.flowWithLifecycle(
+            viewLifecycleOwner.lifecycle,
+            Lifecycle.State.STARTED
+        ).onEach {
+            when(it){
+                is RequestState.Error -> {
+                    Toast.makeText(requireActivity(),it.exception.message, Toast.LENGTH_SHORT).show()
+                }
+                is RequestState.Loading -> {
+
+                }
+                is RequestState.Success -> {
+                    binding.tvText.text = Gson().toJson(it.data)
+
+                    it.data.forEach { entity ->
+                        viewModel.deleteStepRecord(entity)
+
+                    }
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
