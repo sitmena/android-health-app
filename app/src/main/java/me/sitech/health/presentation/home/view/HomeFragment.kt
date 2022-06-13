@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.google.gson.Gson
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import me.sitech.health.R
@@ -17,7 +16,7 @@ import me.sitech.health.databinding.FragmentHomeBinding
 import me.sitech.health.presentation.home.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment: Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
     val binding by viewBinding(FragmentHomeBinding::bind)
     val viewModel by viewModel<HomeViewModel>()
@@ -26,9 +25,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.redeem()
-
         observeStateFlow()
-
         viewModel.getStepRecordsList()
     }
 
@@ -37,15 +34,16 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
             viewLifecycleOwner.lifecycle,
             Lifecycle.State.STARTED
         ).onEach {
-            when(it){
+            when (it) {
                 is RequestState.Error -> {
-                    Toast.makeText(requireActivity(),it.exception.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), it.exception.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
                 is RequestState.Loading -> {
-
+                    //binding.tvText.text = it.data.string()
                 }
                 is RequestState.Success -> {
-
+                    //binding.tvText.text = it.data.string()
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
@@ -54,18 +52,18 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
             viewLifecycleOwner.lifecycle,
             Lifecycle.State.STARTED
         ).onEach {
-            when(it){
+            when (it) {
                 is RequestState.Error -> {
-                    Toast.makeText(requireActivity(),it.exception.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), it.exception.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
                 is RequestState.Loading -> {
-
+                    //binding.pointBalance.text = Gson().toJson(it.data)
                 }
                 is RequestState.Success -> {
-                    binding.tvText.text = Gson().toJson(it.data)
+                    //binding.pointBalance.text = Gson().toJson(it.data)
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
-
 }

@@ -5,22 +5,27 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 
     <application
         android:name=".app.app.HealthApp"
         android:allowBackup="true"
+        android:configChanges="orientation"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.SitechHealth"
-        tools:targetApi="31">
+        tools:targetApi="32">
+
         <service
             android:name=".app.services.StepCountingService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            android:permission="android.permission.ACTIVITY_RECOGNITION" />
 
         <activity
             android:name=".presentation.activity.MainActivity"

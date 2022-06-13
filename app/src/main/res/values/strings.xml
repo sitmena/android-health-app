@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Sitech Health</string>
+    <string name="point_balance_label">Point Balance</string>
+    <string name="steps_progress_label">Steps to next point</string>
+    <string name="daily_info_label">Daily information</string>
+    <string name="calories_label">Calories / day</string>
+    <string name="steps_label">Steps / day</string>
+    <string name="redeem">Redeem</string>
 </resources>
