@@ -1,64 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:padding="32dp">
+        android:fitsSystemWindows="true">
 
-        <TextView
-            android:id="@+id/tv_date"
+        <Space
+            android:id="@+id/top_spacer"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_large"
+            app:layout_constraintBottom_toTopOf="@id/date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:fontFamily="@font/montserrat_regular"
-            android:maxLines="1"
-            android:text="July 19, 2022"
-            android:textColor="@color/raisin_black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/tv_disclaimer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/margin_large" />
 
-        <TextView
-            android:id="@+id/tv_disclaimer"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="Hi, Mohammad"
-            android:textColor="@color/raisin_black"
-            android:textSize="26sp"
-            app:layout_constraintBottom_toTopOf="@id/cv_steps_counter"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/margin_large" />
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/TextAppearance.SiTech.TitleLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/greeting"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_date" />
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/top_spacer"
+            tools:text="July 19, 2022" />
+
+        <TextView
+            android:id="@+id/greeting"
+            style="@style/TextAppearance.SiTech.HeadlineSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/point_balance_container"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/date"
+            tools:text="Hi, Mohammad" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cv_steps_counter"
-            android:layout_width="330dp"
-            android:layout_height="333dp"
-            android:layout_marginTop="48dp"
+            android:id="@+id/point_balance_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
             android:animateLayoutChanges="true"
-            android:background="@drawable/ic_circles_background"
-            android:padding="60dp"
-            app:layout_constraintBottom_toTopOf="@id/tv_point_disclaimer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_disclaimer">
+            android:background="@drawable/circles_background"
+            android:padding="@dimen/spacing_large"
+            app:layout_constraintBottom_toTopOf="@id/steps_progress_label"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/greeting">
 
             <LinearLayout
-                android:layout_width="134dp"
-                android:layout_height="130dp"
+                android:layout_width="104dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_huge"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -67,242 +87,254 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tv_steps"
+                    android:id="@+id/point_balance"
+                    style="@style/TextAppearance.SiTech.HeadlineMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:autoSizeMinTextSize="26sp"
-                    android:autoSizeTextType="uniform"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/montserrat_semibold"
-                    android:maxLines="1"
-                    android:text="107"
-                    android:textColor="@color/raisin_black"
-                    android:textSize="44sp" />
+                    android:textSize="@dimen/text_size_headline_large"
+                    tools:text="0" />
 
                 <TextView
-                    android:id="@+id/tv_steps_disclaimer"
+                    android:id="@+id/point_balance_label"
+                    style="@style/TextAppearance.SiTech.LabelSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:maxEms="8"
-                    android:maxLines="1"
-                    android:text="Point Balance"
-                    android:textColor="@color/raisin_black"
-                    android:textSize="12sp" />
+                    android:text="@string/point_balance_label"
+                    android:textAppearance="@style/TextAppearance.SiTech.LabelSmall" />
+
             </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/tv_point_disclaimer"
+            android:id="@+id/steps_progress_label"
+            style="@style/TextAppearance.SiTech.LabelMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/montserrat_bold"
-            android:maxLines="1"
-            android:text="Steps to next point"
-            android:textColor="@color/raisin_black"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@id/pb_steps_container"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cv_steps_counter" />
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/steps_progress_label"
+            app:layout_constraintBottom_toTopOf="@id/steps_progress_container"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/point_balance_container" />
 
-        <RelativeLayout
-            android:id="@+id/pb_steps_container"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/steps_progress_container"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:animateLayoutChanges="true"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@id/tv_daily_disclaimer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_point_disclaimer">
+            app:layout_constraintBottom_toTopOf="@id/daily_info_label"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/steps_progress_label">
 
             <ImageView
-                android:id="@+id/pb_start_progress"
+                android:id="@+id/steps_start_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:src="@drawable/ic_walking" />
+                android:layout_marginBottom="@dimen/margin_micro"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_walking"
+                app:layout_constraintBottom_toTopOf="@id/steps_progress_bar"
+                app:layout_constraintEnd_toStartOf="@id/steps_end_icon"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/steps_progress_thumb"
+                android:layout_width="@dimen/steps_progress_thumb_width"
+                android:layout_height="@dimen/steps_progress_thumb_height"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/ic_running_flag"
+                app:layout_constraintBottom_toTopOf="@id/steps_progress_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_constraintHorizontal_bias="0.5">
+
+                <TextView
+                    android:id="@+id/total_steps"
+                    style="@style/TextAppearance.SiTech.LabelSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/spacing_micro"
+                    android:paddingEnd="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0"
+                    tools:text="500" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
+                android:id="@+id/steps_end_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_running" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_reward" />
+                android:layout_marginBottom="@dimen/margin_micro"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_reward"
+                app:layout_constraintBottom_toTopOf="@id/steps_progress_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/steps_start_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1" />
 
             <ProgressBar
-                android:id="@+id/pb_steps"
+                android:id="@+id/steps_progress_bar"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_below="@id/pb_start_progress"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="6dp"
-                android:max="1000"
-                android:progress="500" />
+                android:layout_width="@dimen/steps_progress_width"
+                android:layout_height="@dimen/steps_progress_height"
+                android:layout_marginTop="@dimen/margin_micro"
+                android:progressDrawable="@drawable/steps_progress_bar"
+                app:layout_constraintBottom_toTopOf="@id/starting_steps"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/steps_progress_thumb"
+                tools:max="1000"
+                tools:progress="500" />
 
             <TextView
+                android:id="@+id/starting_steps"
+                style="@style/TextAppearance.SiTech.LabelSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/pb_steps"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="0"
-                android:textColor="@color/raisin_black"
-                android:textSize="12sp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/steps_progress_bar"
+                tools:text="0" />
 
             <TextView
+                android:id="@+id/goal_steps"
+                style="@style/TextAppearance.SiTech.LabelSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/pb_steps"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="500"
-                android:textColor="@color/raisin_black"
-                android:textSize="12sp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/steps_progress_bar"
+                tools:text="1000" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/pb_steps"
-                android:layout_alignParentEnd="true"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="1000"
-                android:textColor="@color/raisin_black"
-                android:textSize="12sp" />
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/tv_daily_disclaimer"
+            android:id="@+id/daily_info_label"
+            style="@style/TextAppearance.SiTech.LabelMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/montserrat_bold"
-            android:maxLines="1"
-            android:text="Daily information"
-            android:textColor="@color/raisin_black"
-            android:textSize="12sp"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/daily_info_label"
+            app:layout_constraintBottom_toTopOf="@id/daily_info_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pb_steps_container" />
+            app:layout_constraintTop_toBottomOf="@id/steps_progress_container" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_daily_info"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_marginTop="22dp"
+            android:id="@+id/daily_info_container"
+            android:layout_width="@dimen/info_card_width"
+            android:layout_height="@dimen/info_card_height"
+            android:layout_marginTop="@dimen/margin_small"
             android:backgroundTint="@color/cultured"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_redeem"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_daily_disclaimer">
+            app:cardCornerRadius="@dimen/info_card_corner_radius"
+            app:cardElevation="@dimen/info_card_elevation"
+            app:layout_constraintBottom_toTopOf="@+id/redeem"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/daily_info_label">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="14dp">
+                android:padding="@dimen/spacing_large">
 
                 <TextView
-                    android:id="@+id/tv_calories"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/calories"
+                    style="@style/TextAppearance.SiTech.HeadlineMedium"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_semibold"
-                    android:text="49"
-                    android:textColor="@color/raisin_black"
-                    android:textSize="38sp"
-                    app:layout_constraintBottom_toTopOf="@id/tv_calories_label"
-                    app:layout_constraintEnd_toStartOf="@id/view_separator"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    app:layout_constraintBottom_toTopOf="@id/calories_label"
+                    app:layout_constraintEnd_toStartOf="@id/divider"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Coming Soon" />
+
+                <TextView
+                    android:id="@+id/calories_label"
+                    style="@style/TextAppearance.SiTech.BodySmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    android:text="@string/calories_label"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/divider"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/calories" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider"
+                    android:layout_width="@dimen/info_card_divider_width"
+                    android:layout_height="0dp"
+                    app:dividerColor="@color/dark_silver"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_calories_label"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/daily_steps"
+                    style="@style/TextAppearance.SiTech.HeadlineMedium"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Calories / day"
-                    android:textColor="@color/raisin_black"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/view_separator"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_calories" />
-
-                <View
-                    android:id="@+id/view_separator"
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/dark_silver"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintBottom_toTopOf="parent"
+                    android:layout_marginStart="@dimen/margin_small"
+                    app:layout_constraintBottom_toTopOf="@id/daily_steps_label"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toEndOf="@id/divider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="78" />
 
                 <TextView
-                    android:id="@+id/tv_daily_steps"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/daily_steps_label"
+                    style="@style/TextAppearance.SiTech.BodySmall"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_semibold"
-                    android:text="78"
-                    android:textColor="@color/raisin_black"
-                    android:textSize="38sp"
-                    app:layout_constraintBottom_toTopOf="@id/tv_steps_label"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/view_separator"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_steps_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Steps / day"
-                    android:textColor="@color/raisin_black"
-                    android:textSize="12sp"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:text="@string/steps_label"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/view_separator"
-                    app:layout_constraintTop_toBottomOf="@id/tv_daily_steps" />
+                    app:layout_constraintStart_toEndOf="@id/divider"
+                    app:layout_constraintTop_toBottomOf="@id/daily_steps" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btn_redeem"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/redeem"
+            style="@style/Widget.SiTech.Button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:layout_marginBottom="6dp"
-            android:backgroundTint="@color/medium_aquamarine"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="1dp"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/redeem"
+            app:layout_constraintBottom_toTopOf="@id/bottom_spacer"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/daily_info_container" />
+
+        <Space
+            android:id="@+id/bottom_spacer"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_large"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cv_daily_info">
+            app:layout_constraintTop_toBottomOf="@id/redeem" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/helvetica_neue_bold"
-                android:maxLines="1"
-                android:padding="16dp"
-                android:text="Redeem"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

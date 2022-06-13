@@ -16,7 +16,7 @@ import me.sitech.health.databinding.FragmentHomeBinding
 import me.sitech.health.presentation.home.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment: Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
     val binding by viewBinding(FragmentHomeBinding::bind)
     val viewModel by viewModel<HomeViewModel>()
@@ -33,15 +33,16 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
             viewLifecycleOwner.lifecycle,
             Lifecycle.State.STARTED
         ).onEach {
-            when(it){
+            when (it) {
                 is RequestState.Error -> {
-                    Toast.makeText(requireActivity(),it.exception.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), it.exception.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
                 is RequestState.Loading -> {
-
+                    //binding.tvText.text = it.data.string()
                 }
                 is RequestState.Success -> {
-                    binding.tvText.text = it.data.string()
+                    //binding.tvText.text = it.data.string()
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)

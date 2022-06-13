@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text appearances -->
+    <style name="TextAppearance.SiTech.HeadlineMedium" parent="@style/TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textSize">@dimen/text_size_headline_medium</item>
+        <item name="fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:maxLines">1</item>
+        <item name="autoSizeMinTextSize">@dimen/text_size_title_large</item>
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textColor">@color/raisin_black</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:gravity">center</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextAppearance.SiTech.HeadlineSmall" parent="@style/TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">@dimen/text_size_headline_small</item>
+        <item name="autoSizeMinTextSize">@dimen/text_size_headline_micro</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/raisin_black</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextAppearance.SiTech.TitleLarge" parent="@style/TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">@dimen/text_size_title_large</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:maxLines">1</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/raisin_black</item>
+        <item name="autoSizeMinTextSize">@dimen/text_size_title_medium</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextAppearance.SiTech.BodyLarge" parent="@style/TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">@dimen/text_size_body_large</item>
+        <item name="fontFamily">@font/helvetica_neue_bold</item>
+        <item name="android:fontFamily">@font/helvetica_neue_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextAppearance.SiTech.BodySmall" parent="@style/TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">@dimen/text_size_body_small</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/raisin_black</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextAppearance.SiTech.LabelMedium" parent="@style/TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">@dimen/text_size_label_medium</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/raisin_black</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextAppearance.SiTech.LabelSmall" parent="@style/TextAppearance.Material3.LabelSmall">
+        <item name="android:textSize">@dimen/text_size_label_small</item>
+        <item name="fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textColor">@color/raisin_black</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxEms">8</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Widget.SiTech.Button" parent="TextAppearance.SiTech.BodyLarge">
+        <item name="android:padding">@dimen/spacing_semi_large</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/rounded_button</item>
+    </style>
+
+    <!-- List item primary text, e.g. event titles, codelab titles -->
+    <style name="TextAppearance.SiTech.ListPrimary" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Button -->
+
+</resources>
