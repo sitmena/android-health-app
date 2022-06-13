@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.google.gson.Gson
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import me.sitech.health.R
@@ -53,19 +52,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewLifecycleOwner.lifecycle,
             Lifecycle.State.STARTED
         ).onEach {
-            when(it){
+            when (it) {
                 is RequestState.Error -> {
-                    Toast.makeText(requireActivity(),it.exception.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), it.exception.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
                 is RequestState.Loading -> {
-
+                    //binding.pointBalance.text = Gson().toJson(it.data)
                 }
                 is RequestState.Success -> {
-                    binding.tvText.text = Gson().toJson(it.data)
+                    //binding.pointBalance.text = Gson().toJson(it.data)
                 }
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
-    }
-
 }

@@ -2,7 +2,6 @@ package me.sitech.health.presentation.home.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -45,7 +44,7 @@ class HomeViewModel constructor(
         }
     }
 
-    fun getStepRecordsList(){
+    fun getStepRecordsList() {
         viewModelScope.launch {
             stepRecordsUseCase().collect {
                 mStepRecordsListDataResult.value = it
@@ -53,8 +52,8 @@ class HomeViewModel constructor(
         }
     }
 
-    fun insertStepRecord(dateTime: Long, count: Int){
-        val stepEntity = StepEntity(0,dateTime, count)
+    fun insertStepRecord(dateTime: Long, count: Int) {
+        val stepEntity = StepEntity(0, dateTime, count)
         viewModelScope.launch {
             insertStepRecordUseCase(stepEntity).collect {
                 mInsertRecordDataResult.value = it
@@ -62,7 +61,7 @@ class HomeViewModel constructor(
         }
     }
 
-    fun deleteStepRecord(stepEntity:StepEntity){
+    fun deleteStepRecord(stepEntity: StepEntity) {
         viewModelScope.launch {
             deleteStepRecordUseCase(stepEntity).collect {
                 mDeleteRecordDataResult.value = it

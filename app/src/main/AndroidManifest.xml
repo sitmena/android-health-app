@@ -20,10 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SitechHealth"
         tools:targetApi="32">
+
         <service
             android:name=".app.services.StepCountingService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            android:permission="android.permission.ACTIVITY_RECOGNITION" />
 
         <activity
             android:name=".presentation.activity.MainActivity"
