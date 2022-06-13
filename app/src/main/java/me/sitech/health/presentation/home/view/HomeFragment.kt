@@ -8,7 +8,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.google.gson.Gson
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import me.sitech.health.R
@@ -17,7 +16,6 @@ import me.sitech.health.app.utils.viewBinding
 import me.sitech.health.databinding.FragmentHomeBinding
 import me.sitech.health.presentation.home.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 class HomeFragment: Fragment(R.layout.fragment_home) {
 
