@@ -8,7 +8,7 @@ val viewModelModule = module {
 
     // Specific viewModel pattern to tell Koin how to build CountriesViewModel
     viewModel {
-        HomeViewModel(get())
+        HomeViewModel(get(), get(), get(), get())
     }
 
 }

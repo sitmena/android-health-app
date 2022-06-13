@@ -16,6 +16,7 @@ class HealthApp: Application() {
                 apiModule,
                 viewModelModule,
                 useCaseModule,
+                localDBModule,
                 repositoryModule,
                 networkModule,
             )
